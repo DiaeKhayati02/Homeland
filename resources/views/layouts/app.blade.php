@@ -32,7 +32,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
-    <div id="app">
+    <div id="app" style="margin-top:-25px">
        
         <div class="site-navbar mt-4">
         <div class="container py-1">
@@ -67,7 +67,7 @@
                     <li><a href="{{ route('login') }}">Login</a></li>
                     @endif
                     @if (Route::has('register'))
-                  <li><a href="register.html">Register</a></li>
+                  <li><a href="{{ route('register') }}">Register</a></li>
                   @endif
                   @else
                             <li class="nav-item dropdown">

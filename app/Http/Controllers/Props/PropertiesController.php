@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Props;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Prop\Property;
-
+use App\Models\Prop\PropImage;
 class PropertiesController extends Controller
 {
     public function index() {
@@ -19,6 +19,8 @@ class PropertiesController extends Controller
 
             $singleProp = Property::find($id);
 
-            return view('props.single', compact('singleProp'));
+            $prop_images = PropImage::where('prop_id', $id)->get();
+
+            return view('props.single', compact('singleProp','propImages'));
             }
 }

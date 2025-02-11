@@ -20,9 +20,9 @@
           <div class="col-lg-8">
             <div>
               <div class="slide-one-item home-slider owl-carousel">
-                @foreach($propImages as $propImage)
+                @foreach ($propImages as $propImage)
                 <div><img src="{{ asset('assets/images/'.$propImage->image.'') }}" alt="Image" class="img-fluid"></div>
-               
+                 @endforeach
             </div>
             <div class="bg-white property-body border-bottom border-left border-right">
               <div class="row mb-5">
@@ -64,22 +64,22 @@
                 </div>
               </div>
               <h2 class="h4 text-black">More Info</h2>
-              <p>{{ $singleProp->more_info }}</p>
+              <p>{{ $singleProp->home_info }}</p>
               
 
               <div class="row no-gutters mt-5">
                 <div class="col-12">
                   <h2 class="h4 text-black mb-3">Gallery</h2>
                 </div>
-                foreach ($propImages as $propImage)
+                @foreach ($propImages as $propImage)
                 <div class="col-sm-6 col-md-4 col-lg-3">
                   <a href="{{ asset('assets/images/'.$propImage->image.'') }}" class="image-popup gal-item"><img src="{{ asset('assets/images/'.$propImage->image.'') }}" alt="Image" class="img-fluid"></a>
                 </div>
-               
+               @endforeach
               </div>
             </div>
           </div>
-          <div class="col-lg-4">
+          <div class="col-lg-4"> <!-- This column contains the Contact Agent section -->
 
             <div class="bg-white widget border rounded">
 
@@ -106,9 +106,9 @@
             <div class="bg-white widget border rounded">
               <h3 class="h4 text-black widget-title mb-3 ml-0">Share</h3>
                   <div class="px-3" style="margin-left: -15px;">
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=&quote=" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-facebook"></span></a>
-                    <a  href="https://twitter.com/intent/tweet?text=&url=" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-twitter"></span></a>
-                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-linkedin"></span></a>    
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('single.prop', $singleProp->id) }}&quote={{ $singleProp->title }}" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-facebook"></span></a>
+                    <a  href="https://twitter.com/intent/tweet?text={{ $singleProp->title }}&url={{ route('single.prop', $singleProp->id) }}" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-twitter"></span></a>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ route('single.prop', $singleProp->id) }}" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-linkedin"></span></a>    
                   </div>            
             </div>
 
@@ -130,34 +130,36 @@
         </div>
       
         <div class="row mb-5">
+          @if ($relatedProps->count() > 0)
+          @foreach($relatedProps as $relatedProp)
           <div class="col-md-6 col-lg-4 mb-4">
             <div class="property-entry h-100">
-              <a href="property-details.html" class="property-thumbnail">
+              <a href="{{ route('single.prop', $relatedProp->id) }}" class="property-thumbnail">
                 <div class="offer-type-wrap">
                   <span class="offer-type bg-danger">Sale</span>
                   <span class="offer-type bg-success">Rent</span>
                 </div>
-                <img src="images/img_1.jpg" alt="Image" class="img-fluid">
+                <img src="{{ asset('assets/images/' .$relatedProp->image.'') }}" alt="Image" class="img-fluid">
               </a>
               <div class="p-4 property-body">
                 <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
-                <h2 class="property-title"><a href="property-details.html">625 S. Berendo St</a></h2>
-                <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 625 S. Berendo St Unit 607 Los Angeles, CA 90005</span>
-                <strong class="property-price text-primary mb-3 d-block text-success">$2,265,500</strong>
+                <h2 class="property-title"><a href="{{ route('single.prop', $relatedProp->id) }}">{{ $relatedProp->title }}</a></h2>
+                <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> {{ $relatedProp->location }}</span>
+                <strong class="property-price text-primary mb-3 d-block text-success">${{ $relatedProp->price }}</strong>
                 <ul class="property-specs-wrap mb-3 mb-lg-0">
                   <li>
                     <span class="property-specs">Beds</span>
-                    <span class="property-specs-number">2 <sup>+</sup></span>
+                    <span class="property-specs-number">{{ $relatedProp->beds }} <sup>+</sup></span>
                     
                   </li>
                   <li>
                     <span class="property-specs">Baths</span>
-                    <span class="property-specs-number">2</span>
+                    <span class="property-specs-number">{{ $relatedProp->baths }}</span>
                     
                   </li>
                   <li>
                     <span class="property-specs">SQ FT</span>
-                    <span class="property-specs-number">7,000</span>
+                    <span class="property-specs-number">{{ $relatedProp->sq_ft }}</span>
                     
                   </li>
                 </ul>
@@ -165,77 +167,14 @@
               </div>
             </div>
           </div>
+          @endforeach
 
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="property-entry h-100">
-              <a href="property-details.html" class="property-thumbnail">
-                <div class="offer-type-wrap">
-                  <span class="offer-type bg-danger">Sale</span>
-                  <span class="offer-type bg-success">Rent</span>
-                </div>
-                <img src="images/img_2.jpg" alt="Image" class="img-fluid">
-              </a>
-              <div class="p-4 property-body">
-                <a href="#" class="property-favorite active"><span class="icon-heart-o"></span></a>
-                <h2 class="property-title"><a href="property-details.html">871 Crenshaw Blvd</a></h2>
-                <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 1 New York Ave, Warners Bay, NSW 2282</span>
-                <strong class="property-price text-primary mb-3 d-block text-success">$2,265,500</strong>
-                <ul class="property-specs-wrap mb-3 mb-lg-0">
-                  <li>
-                    <span class="property-specs">Beds</span>
-                    <span class="property-specs-number">2 <sup>+</sup></span>
-                    
-                  </li>
-                  <li>
-                    <span class="property-specs">Baths</span>
-                    <span class="property-specs-number">2</span>
-                    
-                  </li>
-                  <li>
-                    <span class="property-specs">SQ FT</span>
-                    <span class="property-specs-number">1,620</span>
-                    
-                  </li>
-                </ul>
+          @else 
+          <h3 class="alert alert-success"> there are no properties related to this property </h3>
+          @endif
+          
 
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="property-entry h-100">
-              <a href="property-details.html" class="property-thumbnail">
-                <div class="offer-type-wrap">
-                  <span class="offer-type bg-info">Lease</span>
-                </div>
-                <img src="images/img_3.jpg" alt="Image" class="img-fluid">
-              </a>
-              <div class="p-4 property-body">
-                <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
-                <h2 class="property-title"><a href="property-details.html">853 S Lucerne Blvd</a></h2>
-                <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 853 S Lucerne Blvd Unit 101 Los Angeles, CA 90005</span>
-                <strong class="property-price text-primary mb-3 d-block text-success">$2,265,500</strong>
-                <ul class="property-specs-wrap mb-3 mb-lg-0">
-                  <li>
-                    <span class="property-specs">Beds</span>
-                    <span class="property-specs-number">2 <sup>+</sup></span>
-                    
-                  </li>
-                  <li>
-                    <span class="property-specs">Baths</span>
-                    <span class="property-specs-number">2</span>
-                    
-                  </li>
-                  <li>
-                    <span class="property-specs">SQ FT</span>
-                    <span class="property-specs-number">5,500</span>
-                    
-                  </li>
-                </ul>
-
-              </div>
-            </div>
-          </div>
+          
         </div>
       </div>
 @endsection

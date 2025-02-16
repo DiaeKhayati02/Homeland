@@ -14,3 +14,6 @@ Route::get('props/prop-details/{id}', [App\Http\Controllers\Props\PropertiesCont
 //inserting requests
 Route::post('props/prop-details/{id}', [App\Http\Controllers\Props\PropertiesController::class, 'insertRequests'])->name('insert.request');
 
+//saving properties
+
+Route::post('props/saved-props/{id}', [App\Http\Controllers\Props\PropertiesController::class, 'saveProps'])->name('save.prop');

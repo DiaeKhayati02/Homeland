@@ -28,4 +28,18 @@ class PropertiesController extends Controller
             ->get();
             return view('props.single', compact('singleProp','propImages','relatedProps'));
             }
+
+            
+            public function insertRequests(Request $request) {
+
+                $insertRequest = Property::Create([
+                    'prop_id' => $request->prop_id,
+                    'agent_name' => $request->agent_name,
+                    'user_id' => Auth::user()->id,
+                    'name' => Auth::user()->name,
+                    'email' => $request->email,
+                    'phone' => $request->phone,
+                ]);
+                echo "Request Sent Successfully";
+                }
 }

@@ -101,6 +101,9 @@
             <div class="bg-white widget border rounded">
 
               <h3 class="h4 text-black widget-title mb-3">Contact Agent</h3>
+              @if($validateFormCount > 0)
+              <p class="alert alert-success"> You already sent a request to this property</p>
+              @else
               <form method="POST" action="{{ route('insert.request',$singleProp->id) }}" class="form-contact-agent">
                 @csrf
               <div class="form-group">
@@ -142,8 +145,12 @@
                   <input type="submit" name="submit" id="phone" class="btn btn-primary" value="Send Request">
                 </div>
               </form>
-            </div>
+            
 
+
+              @endif
+              </div>
+              
             <div class="bg-white widget border rounded">
               <h3 class="h4 text-black widget-title mb-3 ml-0">Share</h3>
                   <div class="px-3" style="margin-left: -15px;">

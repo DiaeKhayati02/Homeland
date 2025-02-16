@@ -28,7 +28,10 @@ class PropertiesController extends Controller
             ->take(3)
             ->orderBy('created_at','desc')
             ->get();
-            return view('props.single', compact('singleProp','propImages','relatedProps'));
+
+            //validating form request 
+            $validateFormCount = AllRequest::where('prop_id',$id)->where('user_id', Auth::user()->id)->count();
+            return view('props.single', compact('singleProp','propImages','relatedProps','validateFormCount'));
             }
 
             

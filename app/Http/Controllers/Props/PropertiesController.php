@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Prop\Property;
 use App\Models\Prop\PropImage;
+use App\Models\Prop\AllRequest;
+use Auth;
 class PropertiesController extends Controller
 {
     public function index() {
@@ -32,7 +34,13 @@ class PropertiesController extends Controller
             
             public function insertRequests(Request $request) {
 
-                $insertRequest = Property::Create([
+                Request()->validate([
+                    'name' => 'required|max:40',
+                    'email' => 'required|max:70',
+                    'phone' => 'required|max:50',
+                ]);
+
+                $insertRequest = AllRequest::create([
                     'prop_id' => $request->prop_id,
                     'agent_name' => $request->agent_name,
                     'user_id' => Auth::user()->id,
@@ -40,6 +48,10 @@ class PropertiesController extends Controller
                     'email' => $request->email,
                     'phone' => $request->phone,
                 ]);
-                echo "Request Sent Successfully";
+
+                if($insertRequest) {
+                    return redirect('/props/prop-details/' .$request->prop_id.'')->with('success', 'Request Sent Successfully');
+                }
+                
                 }
 }

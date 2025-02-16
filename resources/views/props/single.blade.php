@@ -14,8 +14,25 @@
       </div>
     </div>
 
-    <div class="site-section site-section-sm">
+    
       <div class="container">
+
+      @if (\Session::has('success'))
+              <div class="alert alert-success">
+                          <p>{!! \Session::get('success') !!}</p>
+              </div>
+    @endif
+</div>
+    <!-- <div class="container">
+
+      @if (\Session::has('save'))
+              <div class="alert alert-success">
+                          <p>{!! \Session::get('save') !!}</p>
+              </div>
+    @endif
+</div> -->
+<div class="site-section site-section-sm">
+<div class="container">
         <div class="row">
           <div class="col-lg-8">
             <div>
@@ -87,24 +104,40 @@
               <form method="POST" action="{{ route('insert.request',$singleProp->id) }}" class="form-contact-agent">
                 @csrf
               <div class="form-group">
-                <label for="name">prop_id</label>
-                  <input name="prop_id" value="{{ $singleProp->id }}" type="text" id="name" class="form-control">
+                
+                  <input name="prop_id" value="{{ $singleProp->id }}" type="hidden" id="name" class="form-control">
                 </div>
                 <div class="form-group">
-                <label for="name">agent name</label>
-                  <input name="agent_name" value="{{ $singleProp->agent_name }}"type="text" id="name" class="form-control">
+                
+                  <input name="agent_name" value="{{ $singleProp->agent_name }}" type="hidden" id="name" class="form-control">
                 </div>
+                <div class="form-group">
                   <label for="name">Name</label>
                   <input type="text" name="name" id="name" class="form-control">
                 </div>
+                @error('name')
+                      <span class="text-danger" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                  @enderror
                 <div class="form-group">
                   <label for="email">Email</label>
                   <input type="email" name="email" id="email" class="form-control">
                 </div>
+                @error('email')
+                      <span class="text-danger" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                  @enderror
                 <div class="form-group">
                   <label for="phone">Phone</label>
                   <input type="text" name="phone" id="phone" class="form-control">
                 </div>
+                @error('phone')
+                      <span class="text-danger" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                  @enderror
                 <div class="form-group">
                   <input type="submit" name="submit" id="phone" class="btn btn-primary" value="Send Request">
                 </div>

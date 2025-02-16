@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
-class Request extends Model
+class AllRequest extends Model
 {
     use HasFactory;
     Protected $table = "requests";

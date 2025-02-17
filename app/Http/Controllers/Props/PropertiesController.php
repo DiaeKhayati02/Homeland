@@ -32,7 +32,13 @@ class PropertiesController extends Controller
 
             //validating form request 
             $validateFormCount = AllRequest::where('prop_id',$id)->where('user_id', Auth::user()->id)->count();
-            return view('props.single', compact('singleProp','propImages','relatedProps','validateFormCount'));
+
+
+            // validating saving props 
+            $validateSavingPropsCount = SavedProp::where('prop_id',$id)->where('user_id', Auth::user()->id)->count();
+
+
+            return view('props.single', compact('singleProp','propImages','relatedProps','validateFormCount','validateSavingPropsCount'));
             }
 
             

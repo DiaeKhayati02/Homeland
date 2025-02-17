@@ -154,9 +154,9 @@
               <div class="bg-white widget border rounded">
 
               <h3 class="h4 text-black widget-title mb-3">Save this property</h3>
-              <!-- @if($validateFormCount > 0)
-              <p class="alert alert-success"> You already sent a request to this property</p>
-              @else -->
+              @if($validateSavingPropsCount > 0)
+              <input type="submit" name="submit" id="phone" class="btn btn-primary" disabled value="Property already saved">
+              @else
               <form method="POST" action="{{ route('save.prop',$singleProp->id) }}" class="form-contact-agent">
                 @csrf
               <div class="form-group">
@@ -189,7 +189,7 @@
             
 
 
-              <!-- @endif -->
+              @endif
               </div>
               
             <div class="bg-white widget border rounded">

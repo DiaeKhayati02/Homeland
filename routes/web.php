@@ -17,3 +17,6 @@ Route::post('props/prop-details/{id}', [App\Http\Controllers\Props\PropertiesCon
 //saving properties
 
 Route::post('props/saved-props/{id}', [App\Http\Controllers\Props\PropertiesController::class, 'saveProps'])->name('save.prop');
+
+//displaying props by rent and buy
+Route::get('props/type/Buy', [App\Http\Controllers\Props\PropertiesController::class, 'propsBuy'])->name('buy.prop');

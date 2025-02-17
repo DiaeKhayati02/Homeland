@@ -91,6 +91,14 @@ class PropertiesController extends Controller
                     }
                     
 
+                    public function propsBuy() {
+
+                        $type = 'Buy';
+
+                        $propsBuy = Property::select()->where('type',$type)->get();
+                        return view('props.propsbuy', compact('propsBuy'));
+                        }
+
 
 
 }

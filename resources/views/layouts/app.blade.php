@@ -47,17 +47,17 @@
 
                 <ul class="site-menu js-clone-nav d-none d-lg-block">
                   <li class="active">
-                    <a href="index.html">Home</a>
+                    <a href="{{ url('/') }}">Home</a>
                   </li>
                   <li><a href="{{ route('buy.prop') }}">Buy</a></li>
                   <li><a href="{{ route('rent.prop') }}">Rent</a></li>
                   <li class="has-children">
                     <a href="properties.html">Properties</a>
                     <ul class="dropdown arrow-top">
-                      <li><a href="#">Condo</a></li>
-                      <li><a href="#">Property Land</a></li>
-                      <li><a href="#">Commercial Building</a></li>
-                     
+                      @foreach($homeTypes as $hometype)
+                      <li><a href="{{ route('display.prop.hometype', $hometype->hometypes) }}">{{ $hometype->hometypes }}</a></li>
+                      
+                     @endforeach
                     </ul>
                   </li>
                   <li><a href="about.html">About</a></li>

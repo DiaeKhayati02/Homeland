@@ -99,6 +99,14 @@ class PropertiesController extends Controller
                         return view('props.propsbuy', compact('propsBuy'));
                         }
 
+                        public function propsRent() {
+
+                            $type = 'Rent';
+    
+                            $propsRent = Property::select()->where('type',$type)->get();
+                            return view('props.propsrent', compact('propsRent'));
+                            }
+
 
 
 }

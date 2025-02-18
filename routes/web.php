@@ -27,6 +27,11 @@ Route::get('props/type/Rent', [App\Http\Controllers\Props\PropertiesController::
 //displaying props by home type
 Route::get('props/home-type/{hometype}', [App\Http\Controllers\Props\PropertiesController::class, 'displayByHomeType'])->name('display.prop.hometype');
 
+//displaying props by price asc and desc
+Route::get('props/price-asc', [App\Http\Controllers\Props\PropertiesController::class, 'priceAsc'])->name('price.asc.prop');
+
+//displaying props by price asc and desc
+Route::get('props/price-desc', [App\Http\Controllers\Props\PropertiesController::class, 'priceDesc'])->name('price.desc.prop');
 
 //display contact and about pages
 Route::get('contact', [App\Http\Controllers\Props\HomeController::class, 'contact'])->name('contact');

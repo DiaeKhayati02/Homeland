@@ -37,3 +37,5 @@ Route::get('props/price-desc', [App\Http\Controllers\Props\PropertiesController:
 Route::get('contact', [App\Http\Controllers\Props\HomeController::class, 'contact'])->name('contact');
 Route::get('about', [App\Http\Controllers\Props\HomeController::class, 'about'])->name('about');
 
+//displaying user requests
+Route::get('users/all-requests', [App\Http\Controllers\Props\UsersController::class, 'sllRequests'])->name('all.requests');

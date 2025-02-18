@@ -101,6 +101,7 @@
             <div class="bg-white widget border rounded">
 
               <h3 class="h4 text-black widget-title mb-3">Contact Agent</h3>
+              @if(isset(Auth::user()->id))
               @if($validateFormCount > 0)
               <p class="alert alert-success"> You already sent a request to this property</p>
               @else
@@ -149,11 +150,15 @@
 
 
               @endif
+              @else
+              <p class="alert alert-success"> You need to login to send a request</p>
+              @endif
               </div>
 
               <div class="bg-white widget border rounded">
 
               <h3 class="h4 text-black widget-title mb-3">Save this property</h3>
+              @if(isset(Auth::user()->id))
               @if($validateSavingPropsCount > 0)
               <input type="submit" name="submit" id="phone" class="btn btn-primary" disabled value="Property already saved">
               @else
@@ -189,6 +194,9 @@
             
 
 
+              @endif
+              @else
+              <p class="alert alert-success"> You need to login to save a property</p>
               @endif
               </div>
               

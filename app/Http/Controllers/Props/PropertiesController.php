@@ -31,15 +31,19 @@ class PropertiesController extends Controller
             ->get();
 
             //validating form request 
+            if(auth()->user()) {
             $validateFormCount = AllRequest::where('prop_id',$id)->where('user_id', Auth::user()->id)->count();
-
+            
 
             // validating saving props 
             $validateSavingPropsCount = SavedProp::where('prop_id',$id)->where('user_id', Auth::user()->id)->count();
 
 
             return view('props.single', compact('singleProp','propImages','relatedProps','validateFormCount','validateSavingPropsCount'));
+            } else {
+                return view('props.single', compact('singleProp','propImages','relatedProps'));
             }
+        }
 
             
             public function insertRequests(Request $request) {

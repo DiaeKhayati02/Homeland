@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', [App\Http\Controllers\Props\PropertiesController::class, 'index'])->name('home');
 
 Auth::routes();
 
@@ -25,3 +26,9 @@ Route::get('props/type/Rent', [App\Http\Controllers\Props\PropertiesController::
 
 //displaying props by home type
 Route::get('props/home-type/{hometype}', [App\Http\Controllers\Props\PropertiesController::class, 'displayByHomeType'])->name('display.prop.hometype');
+
+
+//display contact and about pages
+Route::get('contact', [App\Http\Controllers\Props\HomeController::class, 'contact'])->name('contact');
+Route::get('about', [App\Http\Controllers\Props\HomeController::class, 'about'])->name('about');
+

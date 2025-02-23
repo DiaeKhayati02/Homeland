@@ -11,11 +11,21 @@ use Auth;
 class UsersController extends Controller
 {
     public function allRequests() {
-        $allRequests = AllRequest::where('user_id', Auth::user()->id)->get();
+        if(auth()->user()) {
+            $allRequests = AllRequest::where('user_id', Auth::user()->id)->get();
         return view('users.displayrequests', compact('allRequests'));
+        } else {
+            return redirect()->route('login');
+            
+        }
+        
     }
     public function allSavedProps() {
+        if(auth()->user()) {
         $allSavedProps = SavedProp::where('user_id', Auth::user()->id)->get();
         return view('users.displaysavedprops', compact('allSavedProps'));
-    }
+        } else {
+            return redirect()->route('login');
+        }
+}
 }

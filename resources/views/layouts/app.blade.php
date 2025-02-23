@@ -52,7 +52,7 @@
                   <li><a href="{{ route('buy.prop') }}">Buy</a></li>
                   <li><a href="{{ route('rent.prop') }}">Rent</a></li>
                   <li class="has-children">
-                    <a href="properties.html">Properties</a>
+                    <a href="#">Properties</a>
                     <ul class="dropdown arrow-top">
                       @foreach($homeTypes as $hometype)
                       <li><a href="{{ route('display.prop.hometype', $hometype->hometypes) }}">{{ $hometype->hometypes }}</a></li>

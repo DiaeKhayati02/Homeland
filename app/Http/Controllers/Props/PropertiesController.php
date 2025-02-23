@@ -130,8 +130,15 @@ class PropertiesController extends Controller
                                         return view('props.propspricedesc', compact('propsByPriceDesc'));
                                         }
     
-
-
+//searching for props
+public function searchProps(Request $request) {
+    $list_types = $request->get('list_types');
+    $offer_types = $request->get('offer_types');
+    $select_city = $request->get('select_city');
+    
+    $searches = Property::select()->where('home_type', 'like', '%'.$list_types.'%')->where('type', 'like', '%'.$offer_types.'%')->where('city', 'like', '%'.$select_city.'%')->get();
+    return view('props.searches', compact('searches'));
+    }
 
 
 }

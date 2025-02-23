@@ -35,6 +35,9 @@ Route::group(['prefix' => 'props'], function(){
     Route::get('price-desc', [App\Http\Controllers\Props\PropertiesController::class, 'priceDesc'])->name('price.desc.prop');
 
 
+    //searching for props
+    Route::any('search', [App\Http\Controllers\Props\PropertiesController::class, 'searchProps'])->name('search.prop');
+
 });
 
 

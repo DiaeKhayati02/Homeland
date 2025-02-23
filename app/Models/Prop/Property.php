@@ -24,6 +24,8 @@ class Property extends Model
         'more_info',
         'location',
         'agent_name',
+        'city',
+        'type'
 
     ];
 

@@ -11,7 +11,7 @@ class AdminsController extends Controller
         return view('admins.login');
     }
 
-    public function checkLogin(Requqest $request) {
+    public function checkLogin(Request $request) {
         $remember_me = $request->has('remember_me') ? true : false;
 
         if (auth()->guard('admin')->attempt(['email' => $request->input("email"), 'password' => $request->input("password")], $remember_me)) {

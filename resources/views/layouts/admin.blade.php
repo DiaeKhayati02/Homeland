@@ -21,6 +21,7 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarText">
+      @auth('admin')
         <ul class="navbar-nav side-nav" >
           <li class="nav-item">
             <a class="nav-link text-white" style="margin-left: 20px;" href="index.html">Home
@@ -40,6 +41,7 @@
             <a class="nav-link" href="requests-admins/show-requests.html" style="margin-left: 20px;">Requests</a>
           </li>
         </ul>
+        @endauth
         <ul class="navbar-nav ml-md-auto d-md-flex">
           <li class="nav-item">
             <a class="nav-link" href="index.html">Home

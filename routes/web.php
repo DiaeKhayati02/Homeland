@@ -52,3 +52,5 @@ Route::get('all-saved-props', [App\Http\Controllers\Users\UsersController::class
 });
 
 Route::get('admin/login', [App\Http\Controllers\Admins\AdminsController::class, 'viewLogin'])->name('view.login');
+Route::post('admin/check-login', [App\Http\Controllers\Admins\AdminsController::class, 'checkLogin'])->name('check.login');
+Route::post('admin/index', [App\Http\Controllers\Admins\AdminsController::class, 'index'])->name('admins.dashboard');

@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admins;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Admin\Admin;
+use App\Models\Prop\Property;
+use App\Models\Prop\HomeType;
 
 class AdminsController extends Controller
 {
@@ -22,6 +25,11 @@ class AdminsController extends Controller
     }
 
     public function index() {
-        return view('admins.index');
+
+        $adminsCount = Admin::select()->count();
+        $propsCount = Property::select()->count();
+        $hometypesCount = HomeType::select()->count();
+
+        return view('admins.index', compact('adminsCount','propsCount','hometypesCount'));
     }
 }

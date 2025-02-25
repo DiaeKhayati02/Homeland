@@ -7,7 +7,7 @@
             <div class="card-body">
               <h5 class="card-title">Properties</h5>
               <!-- <h6 class="card-subtitle mb-2 text-muted">Bootstrap 4.0.0 Snippet by pradeep330</h6> -->
-              <p class="card-text">number of properties: 8</p>
+              <p class="card-text">number of properties: {{ $propsCount }}</p>
              
             </div>
           </div>
@@ -17,7 +17,7 @@
             <div class="card-body">
               <h5 class="card-title">Home types</h5>
               
-              <p class="card-text">number of home types: 4</p>
+              <p class="card-text">number of home types: {{ $hometypesCount }}</p>
               
             </div>
           </div>
@@ -27,7 +27,7 @@
             <div class="card-body">
               <h5 class="card-title">Admins</h5>
               
-              <p class="card-text">number of admins: 3</p>
+              <p class="card-text">number of admins: {{ $adminsCount }}</p>
               
             </div>
           </div>

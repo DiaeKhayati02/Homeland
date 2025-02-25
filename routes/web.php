@@ -57,4 +57,6 @@ Route::post('admin/login', [App\Http\Controllers\Admins\AdminsController::class,
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function(){
 
 Route::get('/index', [App\Http\Controllers\Admins\AdminsController::class, 'index'])->name('admins.dashboard');
+Route::get('/all-admins', [App\Http\Controllers\Admins\AdminsController::class, 'allAdmins'])->name('admins.admins');
+
 });

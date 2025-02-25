@@ -32,4 +32,11 @@ class AdminsController extends Controller
 
         return view('admins.index', compact('adminsCount','propsCount','hometypesCount'));
     }
+    public function allAdmins() {
+
+        $allAdmins = Admin::select()->get();
+        
+
+        return view('admins.admins', compact('allAdmins'));
+    }
 }

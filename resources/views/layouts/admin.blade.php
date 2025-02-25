@@ -32,7 +32,7 @@
             <a class="nav-link" href="{{ route('admins.admins') }}" style="margin-left: 20px;">Admins</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="hometypes-admins/show-hometype.html" style="margin-left: 20px;">Hometypes</a>
+            <a class="nav-link" href="{{ route('admins.hometypes') }}" style="margin-left: 20px;">Hometypes</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="properties-admins/show-properties.html" style="margin-left: 20px;">Properties</a>

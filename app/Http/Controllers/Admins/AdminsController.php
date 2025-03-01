@@ -113,5 +113,14 @@ class AdminsController extends Controller
             return redirect()->route('admin/all-hometypes/')->with('update', 'Home type updated successfully');
         }
     }
+    public function deleteHomeTypes($id) {
+
+        $HomeType = HomeType::find($id);
+        $HomeType->delete();
+
+        if($HomeType) {
+            return redirect()->route('admin/all-hometypes/')->with('delete', 'Home type deleted successfully');
+        }
+    }
     
 }

@@ -66,4 +66,8 @@ Route::get('/create-hometypes', [App\Http\Controllers\Admins\AdminsController::c
 Route::post('/create-hometypes', [App\Http\Controllers\Admins\AdminsController::class, 'storeHomeTypes'])->name('hometypes.store');
 
 
+Route::get('/edit-hometypes/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'editHomeTypes'])->name('hometypes.edit');
+Route::post('/update-hometypes/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'updateHomeTypes'])->name('hometypes.update');
+
+
 });

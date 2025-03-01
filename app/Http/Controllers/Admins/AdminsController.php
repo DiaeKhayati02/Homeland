@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin\Admin;
 use App\Models\Prop\Property;
 use App\Models\Prop\HomeType;
+use App\Models\Prop\AllRequest;
 use Illuminate\Support\Facades\Hash;
 
 class AdminsController extends Controller
@@ -99,7 +100,7 @@ class AdminsController extends Controller
         $HomeType = HomeType::find($id);
         
 
-        return view('admins.edithometypes',compact('$HomeType'));
+        return view('admins.edithometypes',compact('HomeType'));
     }
     public function updateHomeTypes(Request $request, $id)
     {
@@ -121,6 +122,14 @@ class AdminsController extends Controller
         if($HomeType) {
             return redirect()->route('admin/all-hometypes/')->with('delete', 'Home type deleted successfully');
         }
+    }
+
+    public function Requests() {
+
+        $requests = AllRequest::all();
+        
+
+        return view('admins.requests',compact('requests'));
     }
     
 }

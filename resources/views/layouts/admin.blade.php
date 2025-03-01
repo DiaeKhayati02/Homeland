@@ -38,7 +38,7 @@
             <a class="nav-link" href="properties-admins/show-properties.html" style="margin-left: 20px;">Properties</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="requests-admins/show-requests.html" style="margin-left: 20px;">Requests</a>
+            <a class="nav-link" href="{{ route('requests.all') }}" style="margin-left: 20px;">Requests</a>
           </li>
         </ul>
         @endauth

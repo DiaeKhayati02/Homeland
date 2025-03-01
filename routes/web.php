@@ -71,4 +71,7 @@ Route::post('/update-hometypes/{id}', [App\Http\Controllers\Admins\AdminsControl
 
 Route::get('/delete-hometypes/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'deleteHomeTypes'])->name('hometypes.delete');
 
+
+Route::get('/all-requests', [App\Http\Controllers\Admins\AdminsController::class, 'Requests'])->name('requests.all');
+
 });

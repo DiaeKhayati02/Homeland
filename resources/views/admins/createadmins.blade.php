@@ -10,14 +10,27 @@
                  @csrf
                 <div class="form-outline mb-4 mt-4">
                   <input type="email" name="email" id="form2Example1" class="form-control" placeholder="email" />
-                 
+                  @error('email')
+                      <span class="text-danger" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                  @enderror
                 </div>
 
                 <div class="form-outline mb-4">
                   <input type="text" name="name" id="form2Example1" class="form-control" placeholder="name" />
+                  @error('name')
+                      <span class="text-danger" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                  @enderror
                 </div>
                 <div class="form-outline mb-4">
                   <input type="password" name="password" id="form2Example1" class="form-control" placeholder="password" />
+                  @error('password')
+                      <span class="text-danger" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
                 </div>
 
                

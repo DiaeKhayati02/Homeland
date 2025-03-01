@@ -50,6 +50,11 @@ class AdminsController extends Controller
     }
     public function storeAdmins(Request $request)
     {
+        Request()->validate([
+            'name' => 'required|max:40',
+            'email' => 'required|max:40',
+            'password' => 'required|max:40',
+        ]);
         $storeAdmins = Admin::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -68,5 +73,25 @@ class AdminsController extends Controller
 
         return view('admins.hometypes',compact('allHomeTypes'));
     }
+    public function createHomeTypes() {
 
+        $allHomeTypes = HomeType::select()->get();
+        
+
+        return view('admins.createhometypes');
+    }
+    public function storeHomeTypes(Request $request)
+    {
+        Request()->validate([
+            'hometypes' => 'required|max:40',
+        ]);
+        $storeHomeTypes = HomeType::create([
+            'hometypes' => $request->hometypes,
+        ]);
+
+        if($storeHomeTypes) {
+            return redirect()->route('admin/all-hometypes')->with('success', 'Home type created successfully');
+        }
+    }
+    
 }

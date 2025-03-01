@@ -5,7 +5,7 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title mb-4 d-inline">Hometypes</h5>
-              <a href="create-hometype.html" class="btn btn-primary mb-4 text-center float-right">Create Hometypes</a>
+              <a href="{{ route('hometypes.create') }}" class="btn btn-primary mb-4 text-center float-right">Create Hometypes</a>
               <table class="table">
                 <thead>
                   <tr>

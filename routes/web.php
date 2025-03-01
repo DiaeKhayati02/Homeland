@@ -76,4 +76,11 @@ Route::get('/all-requests', [App\Http\Controllers\Admins\AdminsController::class
 
 Route::get('/all-props', [App\Http\Controllers\Admins\AdminsController::class, 'allProps'])->name('props.all');
 
+Route::get('/create-props', [App\Http\Controllers\Admins\AdminsController::class, 'createProps'])->name('props.create');
+Route::post('/create-props', [App\Http\Controllers\Admins\AdminsController::class, 'storeProps'])->name('props.store');
+
+Route::get('/create-gallery', [App\Http\Controllers\Admins\AdminsController::class, 'createGallery'])->name('gallery.create');
+Route::post('/create-gallery', [App\Http\Controllers\Admins\AdminsController::class, 'storeGallery'])->name('gallery.store');
+
+
 });

@@ -8,6 +8,7 @@ use App\Models\Admin\Admin;
 use App\Models\Prop\Property;
 use App\Models\Prop\HomeType;
 use App\Models\Prop\AllRequest;
+use App\Models\Prop\PropImage;
 use Illuminate\Support\Facades\Hash;
 
 class AdminsController extends Controller
@@ -138,6 +139,86 @@ class AdminsController extends Controller
         
 
         return view('admins.props',compact('props'));
+    }
+
+    public function createProps() {
+
+        
+
+        return view('admins.createprops');
+    }
+
+    public function storeProps(Request $request)
+    {
+        // Request()->validate([
+        //     'hometypes' => 'required|max:40',
+        // ]);
+        $destinationPath = 'assets/images/';
+        $myimage = $request->image->getClientOriginalName();
+        $request->image->move(public_path($destinationPath), $myimage);
+        $storeProps = Property::create([
+            'title' => $request->title,
+            'price' => $request->price,
+            'image' => $request->image,
+            'beds' => $request->beds,
+            'baths' => $request->baths,
+            'sq_ft' => $request->sq_ft,
+            'year_built' => $request->year_built,
+            'location' => $request->location,
+            'home_type' => $request->home_type,
+            'type' => $request->type,
+            'city' => $request->city,
+            'more_info' => $request->more_info,
+            'agent_name' => $request->agent_name,
+        ]);
+
+        if($storeProps) {
+            return redirect()->route('admin/all-props')->with('success', 'Property created successfully');
+        }
+    }
+
+    public function createGallery() {
+
+        
+
+        return view('admins.creategallery');
+    }
+    public function storeGallery(Request $request) {
+
+        
+
+           //     'filenames' => 'required',
+        //     'filenames.*' => 'image'
+        // ]);
+
+        $files = [];
+        if($request->hasfile('image'))
+        {
+            foreach($request->file('image') as $file)
+            {
+                $path = "assets/images_gallery/";
+
+                $name = time().rand(1,50).'.'.$file->extension();
+                $file->move(public_path($path), $name);  
+                $files[] = $name; 
+                
+                PropImage::create([
+                    "image" => $name,
+                    "prop_id" => $request->prop_id,
+                ]);
+                
+            }
+        }
+
+        // $file= new PropImage();
+        // $file->filenames = $files;
+        // $file->save();
+
+        if($name) {
+
+            return redirect('/admin/all-props/')->with('success_gallery', 'Gallery added successfully');
+
+        }
     }
     
 }

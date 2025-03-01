@@ -144,8 +144,8 @@ class AdminsController extends Controller
     public function createProps() {
 
         
-
-        return view('admins.createprops');
+        $allProps = Property::all();
+        return view('admins.createprops', compact('allProps'));
     }
 
     public function storeProps(Request $request)

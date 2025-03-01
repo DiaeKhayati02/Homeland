@@ -38,7 +38,7 @@
             <div>
               <div class="slide-one-item home-slider owl-carousel">
                 @foreach ($propImages as $propImage)
-                <div><img src="{{ asset('assets/images/'.$propImage->image.'') }}" alt="Image" class="img-fluid"></div>
+                <div><img src="{{ asset('assets/images_gallery/'.$propImage->image.'') }}" alt="Image" class="img-fluid"></div>
                  @endforeach
             </div>
             <div class="bg-white property-body border-bottom border-left border-right">
@@ -90,7 +90,7 @@
                 </div>
                 @foreach ($propImages as $propImage)
                 <div class="col-sm-6 col-md-4 col-lg-3">
-                  <a href="{{ asset('assets/images/'.$propImage->image.'') }}" class="image-popup gal-item"><img src="{{ asset('assets/images/'.$propImage->image.'') }}" alt="Image" class="img-fluid"></a>
+                  <a href="{{ asset('assets/images_gallery/'.$propImage->image.'') }}" class="image-popup gal-item"><img src="{{ asset('assets/images_gallery/'.$propImage->image.'') }}" alt="Image" class="img-fluid"></a>
                 </div>
                @endforeach
               </div>

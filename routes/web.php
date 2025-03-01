@@ -74,4 +74,6 @@ Route::get('/delete-hometypes/{id}', [App\Http\Controllers\Admins\AdminsControll
 
 Route::get('/all-requests', [App\Http\Controllers\Admins\AdminsController::class, 'Requests'])->name('requests.all');
 
+Route::get('/all-props', [App\Http\Controllers\Admins\AdminsController::class, 'allProps'])->name('props.all');
+
 });

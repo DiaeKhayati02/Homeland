@@ -51,10 +51,12 @@ Route::get('all-requests', [App\Http\Controllers\Users\UsersController::class, '
 Route::get('all-saved-props', [App\Http\Controllers\Users\UsersController::class, 'allSavedProps'])->name('all.saved.props');
 });
 
-Route::get('admin/login', [App\Http\Controllers\Admins\AdminsController::class, 'viewLogin'])->name('view.login');
+Route::get('admin/login', [App\Http\Controllers\Admins\AdminsController::class, 'viewLogin'])->name('view.login')->middleware('checkforauth');;
 Route::post('admin/login', [App\Http\Controllers\Admins\AdminsController::class, 'checkLogin'])->name('check.login');
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function(){
+Route::group(['prefix' => 'admin'
+, 'middleware' => 'auth:admin'
+], function(){
 
 Route::get('/index', [App\Http\Controllers\Admins\AdminsController::class, 'index'])->name('admins.dashboard');
 Route::get('/all-admins', [App\Http\Controllers\Admins\AdminsController::class, 'allAdmins'])->name('admins.admins');
@@ -81,6 +83,9 @@ Route::post('/create-props', [App\Http\Controllers\Admins\AdminsController::clas
 
 Route::get('/create-gallery', [App\Http\Controllers\Admins\AdminsController::class, 'createGallery'])->name('gallery.create');
 Route::post('/create-gallery', [App\Http\Controllers\Admins\AdminsController::class, 'storeGallery'])->name('gallery.store');
+
+
+Route::get('/delete-props/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'deleteProps'])->name('props.delete');
 
 
 });

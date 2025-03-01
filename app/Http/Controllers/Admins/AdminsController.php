@@ -10,7 +10,7 @@ use App\Models\Prop\HomeType;
 use App\Models\Prop\AllRequest;
 use App\Models\Prop\PropImage;
 use Illuminate\Support\Facades\Hash;
-
+use File;
 class AdminsController extends Controller
 {
     public function viewLogin() {
@@ -217,6 +217,34 @@ class AdminsController extends Controller
         if($name) {
 
             return redirect('/admin/all-props/')->with('success_gallery', 'Gallery added successfully');
+
+        }
+    }
+
+    public function deleteProps($id) {
+
+        
+        $deleteProp = Property::find($id);
+        if(File::exists(public_path('assets/images/' . $deleteProp->image))){
+            File::delete(public_path('assets/images/' . $deleteProp->image));
+        }else{
+            //dd('File does not exists.');
+        }
+        $deleteProp->delete();
+
+        $deleteGallery = PropImage::where('prop_id', $id)->get();
+        foreach($deleteGallery as $gallery) {
+            if(File::exists(public_path('assets/images_gallery/' . $gallery->image))){
+                File::delete(public_path('assets/images_gallery/' . $gallery->image));
+            }else{
+                //dd('File does not exists.');
+            }
+            $gallery->delete();
+        }
+
+        if($name) {
+
+            return redirect('/admin/all-props/')->with('delete', 'Property deleted successfully');
 
         }
     }

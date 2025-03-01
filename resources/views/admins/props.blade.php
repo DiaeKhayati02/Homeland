@@ -14,6 +14,11 @@
                     <p>{!! \Session::get('success_gallery') !!}</p>
         </div>
 @endif
+@if (\Session::has('delete'))
+        <div class="alert alert-success">
+                    <p>{!! \Session::get('delete') !!}</p>
+        </div>
+@endif
               <h5 class="card-title mb-4 d-inline">Properties</h5>
               <a href="{{ route('props.create') }}" class="btn btn-primary mb-4 text-center float-right ">Create Properties</a>
               <a href="c{{ route('gallery.create') }}" class="btn btn-primary mb-4 text-center float-right mr-5">Create Gallery</a>
@@ -39,7 +44,7 @@
                     <td>{{ $prop->home_type }}</td>
                     <td>{{ $prop->type }}</td>
                     <td>{{ $prop->city }}</td>
-                     <td><a href="delete-posts.html" class="btn btn-danger  text-center ">delete</a></td>
+                     <td><a href="{{ route('props.delete' , $prop->id) }}" class="btn btn-danger  text-center ">delete</a></td>
                   </tr>
                   @endforeach
                   
